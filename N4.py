@@ -13,7 +13,8 @@ def change_contact(args, contacts):
     for key in contacts.keys():
         if(key == name):
             contacts[name] = phone
-    return "Phone changed."
+            return "Phone changed."
+    return "Контакт не найден"
 
 def user_phone(args,contacts):
     name = args[0]
@@ -21,7 +22,15 @@ def user_phone(args,contacts):
     for key,values in contacts.items():
         if(key == name):
             return values
+    return "Контакт не найден"
 
+def delete_contact(args, contacts):
+    name = args[0]
+    for key in contacts.keys():
+        if(key == name):
+            contacts.pop(key)
+            return "Contact deleted."
+    return "Контакт не найден"
 
 def all_contacts(contacts):
     list_contacts = []
@@ -50,7 +59,8 @@ def main():
             print(user_phone(args,contacts))
         elif command == "all":
             print(all_contacts(contacts))
-                
+        elif command == "delete": 
+            print(delete_contact(args, contacts))       
         else:
             print("Invalid command.")
 
